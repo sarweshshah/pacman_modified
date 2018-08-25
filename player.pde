@@ -11,8 +11,8 @@ class Player {
   int gamePoints; //Count of points secured by the player
 
   // Position and orientation
-  float x, y; // Position coordinates of the player sprite
-  int facing;
+  float x, y; // position coordinates
+  int facing; // orientation [left, right, up, down]
 
   Player(float tempX, float tempY) {
     close_mouth = loadImage("closed.png");
@@ -31,17 +31,17 @@ class Player {
 
   void showOpenMouth() {
     pushMatrix();
-    translate(x + 60, y + 80);
+    translate(x + 50, y + 56);
     updateOrientation();
-    image(open_mouth, -60, -80);
+    image(open_mouth, -50, -56);
     popMatrix();
   }
 
   void showClosedMouth() {
     pushMatrix();
-    translate(x + 60, y + 80);
+    translate(x + 50, y + 56);
     updateOrientation();
-    image(close_mouth, -60, -80);
+    image(close_mouth, -50, -56);
     popMatrix();
   }
 
