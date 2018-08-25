@@ -15,8 +15,8 @@ class Food {
   
   Food() {
     food = loadImage("watermelon.png");
-    startX = random(0, width - 50);
-    startY = random(0, height - 56);
+    startX = random(50, width - 50);
+    startY = random(50, height - 56);
   }
 
   void display() {

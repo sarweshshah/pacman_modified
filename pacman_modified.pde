@@ -9,15 +9,17 @@ int step;
 
 Player player1;
 Food[] melons;
+int foodCount;
 
 void setup() {
   size(960, 720);
   background(2, 1, 56); //Setup a dark blue background
 
   player1 = new Player(15, 15);
+  foodCount = 10;
   
-  melons = new Food[4];
-  for (int i = 0; i < 4; i++) {
+  melons = new Food[foodCount];
+  for (int i = 0; i < foodCount; i++) {
     melons[i] = new Food();
   }
 }
@@ -25,7 +27,7 @@ void setup() {
 void draw() {
   background(2, 1, 56);
 
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < foodCount; i++) {
     melons[i].display();
   }
 
@@ -36,8 +38,7 @@ void draw() {
 }
 
 void keyPressed() {
-  step += 20; // Activate while lerping
-  // step = 10; // Activate while not lerping
+  step += 20;
   if (key == CODED) {
     if (keyCode == RIGHT && player1.x < width - 120) {
       player1.facing = RIGHT;
@@ -56,5 +57,5 @@ void keyPressed() {
 }
 
 void keyReleased() {
-  step = 0; // Activate while lerping
+  step = 0;
 }
