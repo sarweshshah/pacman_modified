@@ -11,7 +11,8 @@ class Player {
   int gamePoints; //Count of points secured by the player
 
   // Position and orientation
-  float x, y; // position coordinates
+  float posX, posY; // position coordinates
+  float imgW, imgH; // size
   int facing; // orientation [left, right, up, down]
 
   Player(float tempX, float tempY) {
@@ -20,9 +21,12 @@ class Player {
 
     gamePoints = 0;
 
-    x = tempX;
-    y = tempY;
+    posX = tempX;
+    posY = tempY;
     facing = RIGHT;
+
+    imgW = close_mouth.width;
+    imgH = close_mouth.height;
   }
 
   Player() {
@@ -59,23 +63,23 @@ class Player {
   }
 
   void display() {
-    this.display(x, y);
+    this.display(posX, posY);
   }
 
   void moveRight(int step) {
-    x = lerp(x, x + step, factor);
+    posX = lerp(posX, posX + step, factor);
   }
 
   void moveLeft(int step) {
-    x = lerp(x, x - step, factor);
+    posX = lerp(posX, posX - step, factor);
   }
 
   void moveUp(int step) {
-    y = lerp(y, y - step, factor);
+    posY = lerp(posY, posY - step, factor);
   }
 
   void moveDown(int step) {
-    y = lerp(y, y + step, factor);
+    posY = lerp(posY, posY + step, factor);
   }
 
   void updateOrientation() {
@@ -91,5 +95,11 @@ class Player {
     if (facing == DOWN) {
       rotate(90.0);
     }
+  }
+
+  boolean isEngulfing(Food f) {
+    if ((f.startX > posX) && (f.startY > posY) && 
+      ((f.startX + f.imgW) < (posX + imgW)) && ((f.startY + f.imgH) < (posY + imgH))) return true;
+    return false;
   }
 }

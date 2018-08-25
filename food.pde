@@ -4,19 +4,23 @@
 
 class Food {
   PImage food;
-  float startX;
-  float startY;
+
+  float startX, startY;
+  float imgW, imgH;
 
   Food(float tempX, float tempY) {
-    food = loadImage("watermelon.png");
+    food = loadImage("food-" + (int)random(1, 9) + ".png");
     startX = tempX;
     startY = tempY;
+
+    imgW = food.width;
+    imgH = food.height;
   }
-  
+
   Food() {
-    food = loadImage("watermelon.png");
-    startX = random(50, width - 50);
-    startY = random(50, height - 56);
+    food = loadImage("food-" + (int)random(1, 9) + ".png");
+    startX = random(50, width - 70);
+    startY = random(50, height - 76);
   }
 
   void display() {
