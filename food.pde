@@ -4,31 +4,29 @@
 
 class Food {
   PImage food;
-  float x;
-  float y;
+  float startX;
+  float startY;
 
   Food(float tempX, float tempY) {
     food = loadImage("watermelon.png");
-    x = tempX;
-    y = tempY;
+    startX = tempX;
+    startY = tempY;
+  }
+  
+  Food() {
+    food = loadImage("watermelon.png");
+    startX = random(0, width - 50);
+    startY = random(0, height - 56);
   }
 
-  void displayFood() {
-    image(food, x, y);
+  void display() {
+    image(food, startX, startY);
   }
 
-  void displayFood(float tempX, float tempY) {
+  void display(float tempX, float tempY) {
     image(food, tempX, tempY);
   }
 
-  void moveFood() {
-  }
-
-  boolean isInBounds(int pointX, int pointY) {
-    if ((pointX > x) && (pointX < x + food.width) && 
-      (pointY > y) && (pointY < y + food.height)) {
-      return true;
-    }
-    return false;
+  void move() {
   }
 }

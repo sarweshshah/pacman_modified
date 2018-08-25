@@ -13,18 +13,24 @@ Food[] melons;
 void setup() {
   size(960, 720);
   background(2, 1, 56); //Setup a dark blue background
-  frameRate(500);
 
   player1 = new Player(15, 15);
+  
   melons = new Food[4];
+  for (int i = 0; i < 4; i++) {
+    melons[i] = new Food();
+  }
 }
 
 void draw() {
-  player1.display();
+  background(2, 1, 56);
 
   for (int i = 0; i < 4; i++) {
+    melons[i].display();
   }
 
+  player1.display();
+  
   textSize(20);
   text("Player Points: " + player1.gamePoints, 800, 30);
 }

@@ -29,17 +29,17 @@ class Player {
     this(0, 0);
   }
 
-  void showOpenMouth() {
+  void showOpenMouth(float tempX, float tempY) {
     pushMatrix();
-    translate(x + 50, y + 56);
+    translate(tempX + 50, tempY + 56);
     updateOrientation();
     image(open_mouth, -50, -56);
     popMatrix();
   }
 
-  void showClosedMouth() {
+  void showClosedMouth(float tempX, float tempY) {
     pushMatrix();
-    translate(x + 50, y + 56);
+    translate(tempX + 50, tempY + 56);
     updateOrientation();
     image(close_mouth, -50, -56);
     popMatrix();
@@ -47,15 +47,14 @@ class Player {
 
   void display(float tempX, float tempY) {
     int elaspedTime = millis();
-    background(2, 1, 56);
     if (keyPressed) {
       if (elaspedTime % 1000 <= 500) {
-        showOpenMouth();
+        showOpenMouth(tempX, tempY);
       } else {
-        showClosedMouth();
+        showClosedMouth(tempX, tempY);
       }
     } else {
-      showClosedMouth();
+      showClosedMouth(tempX, tempY);
     }
   }
 
@@ -77,14 +76,6 @@ class Player {
 
   void moveDown(int step) {
     y = lerp(y, y + step, factor);
-  }
-
-  boolean isInBounds(int pointX, int pointY) {
-    if ((pointX > x) && (pointX < x + 100) && 
-      (pointY > y) && (pointY < y + 140)) {
-      return true;
-    }
-    return false;
   }
 
   void updateOrientation() {
