@@ -5,51 +5,78 @@
  * with his/her face. Cake class is eatable that player consumes.
  */
 
+import java.util.List;
+import processing.sound.*;
+
 int step;
 
+SoundFile bite;
 Player player1;
-Food[] melons;
-int foodCount;
+List<Food> melons;
+int foodCount = 10;
 
 void setup() {
   size(960, 720);
   background(2, 1, 56); //Setup a dark blue background
 
   player1 = new Player(15, 15);
-  foodCount = 10;
-  
-  melons = new Food[foodCount];
+
+  melons = new ArrayList<Food>();
   for (int i = 0; i < foodCount; i++) {
-    melons[i] = new Food();
+    melons.add(new Food());
   }
+
+  bite = new SoundFile(this, "bite.mp3");
 }
 
 void draw() {
-  background(2, 1, 56);
+  if (melons.size() != 0) {
+    background(2, 1, 56);
 
-  for (int i = 0; i < foodCount; i++) {
-    melons[i].display();
+    for (int i = 0; i < melons.size(); i++) {
+      melons.get(i).display();
+    }
+
+    player1.display();
+
+    textSize(20);
+    text("Player Points: " + player1.gamePoints, 800, 30);
+  } else {
+    textSize(80);
+    textAlign(CENTER, CENTER);
+    text("Well Played!", width/2, height/2);
   }
-
-  player1.display();
-  
-  textSize(20);
-  text("Player Points: " + player1.gamePoints, 800, 30);
 }
 
 void keyPressed() {
-  step += 20;
+  step += 10;
+
+  // If player frame engulfs food frame, destroy food instance
+  for (int i = 0; i < melons.size(); i++) {
+    if (player1.isEngulfing(melons.get(i))) {
+      melons.remove(i);
+      bite.play();
+      player1.gamePoints++;
+    }
+  }
+
   if (key == CODED) {
-    if (keyCode == RIGHT && player1.x < width - 120) {
+    if (keyCode == RIGHT && player1.posX < width - 120) {
       player1.facing = RIGHT;
       player1.moveRight(step);
-    } else if (keyCode == LEFT && player1.x > 0) {
+    }
+
+    if (keyCode == LEFT && player1.posX > 0) {
       player1.facing = LEFT;
       player1.moveLeft(step);
-    } else if (keyCode == UP && player1.y > 0) {
+    }  
+
+    if (keyCode == UP && player1.posY > 0) {
       player1.facing = UP;
       player1.moveUp(step);
-    } else if (keyCode == DOWN && player1.y < height - 160) {
+    }  
+
+    if (keyCode == DOWN && player1.posY < height - 160) {
       player1.facing = DOWN;
       player1.moveDown(step);
     }

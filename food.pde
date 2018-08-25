@@ -25,6 +25,7 @@ class Food {
 
   void display() {
     image(food, startX, startY);
+    move();
   }
 
   void display(float tempX, float tempY) {
