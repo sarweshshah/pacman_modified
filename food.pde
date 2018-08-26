@@ -4,6 +4,7 @@
 
 class Food {
   PImage food;
+  int maxMove = 5;
 
   float startX, startY;
   float imgW, imgH;
@@ -33,5 +34,10 @@ class Food {
   }
 
   void move() {
+    startX += random(-maxMove, maxMove);
+    startY += random(-maxMove, maxMove);
+
+    startX = constrain(startX, 0, width - 70);
+    startY = constrain(startY, 0, height - 76);
   }
 }

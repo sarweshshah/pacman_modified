@@ -6,17 +6,17 @@
  */
 
 import java.util.List;
-import processing.sound.*;
 
 int step;
 
-SoundFile bite;
 Player player1;
 List<Food> melons;
+Bite bite;
 int foodCount = 10;
 
 void setup() {
   size(960, 720);
+  surface.setResizable(true);
   background(2, 1, 56); //Setup a dark blue background
 
   player1 = new Player(15, 15);
@@ -26,7 +26,7 @@ void setup() {
     melons.add(new Food());
   }
 
-  bite = new SoundFile(this, "bite.mp3");
+  bite = new Bite(this);
 }
 
 void draw() {
@@ -40,12 +40,14 @@ void draw() {
     player1.display();
 
     textSize(20);
-    text("Player Points: " + player1.gamePoints, 800, 30);
+    text("Player Points: " + player1.gamePoints, 790, 30);
   } else {
     textSize(80);
     textAlign(CENTER, CENTER);
     text("Well Played!", width/2, height/2);
   }
+
+  // saveFrame("frames/####.tif");
 }
 
 void keyPressed() {
