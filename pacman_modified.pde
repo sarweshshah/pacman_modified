@@ -17,7 +17,6 @@ int foodCount = 10;
 void setup() {
   size(960, 720);
   surface.setResizable(true);
-  background(2, 1, 56); //Setup a dark blue background
 
   player1 = new Player(15, 15);
 
@@ -31,7 +30,7 @@ void setup() {
 
 void draw() {
   if (melons.size() != 0) {
-    background(2, 1, 56);
+    background(233, 232, 222);
 
     for (int i = 0; i < melons.size(); i++) {
       melons.get(i).display();
@@ -40,6 +39,7 @@ void draw() {
     player1.display();
 
     textSize(20);
+    fill(0);
     text("Player Points: " + player1.gamePoints, 790, 30);
   } else {
     textSize(80);
