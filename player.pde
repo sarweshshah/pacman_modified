@@ -52,7 +52,7 @@ class Player {
   void display(float tempX, float tempY) {
     int elaspedTime = millis();
     if (keyPressed) {
-      if (elaspedTime % 1000 <= 500) {
+      if (elaspedTime % 500 <= 250) {
         showOpenMouth(tempX, tempY);
       } else {
         showClosedMouth(tempX, tempY);
