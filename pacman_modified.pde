@@ -10,7 +10,7 @@ import java.util.List;
 int step;
 
 Player player1;
-List<Food> melons;
+List<Food> foods;
 Bite bite;
 int foodCount = 10;
 
@@ -20,20 +20,20 @@ void setup() {
 
   player1 = new Player(15, 15);
 
-  melons = new ArrayList<Food>();
+  foods = new ArrayList<Food>();
   for (int i = 0; i < foodCount; i++) {
-    melons.add(new Food());
+    foods.add(new Food());
   }
 
   bite = new Bite(this);
 }
 
 void draw() {
-  if (melons.size() != 0) {
+  if (foods.size() != 0) {
     background(233, 232, 222);
 
-    for (int i = 0; i < melons.size(); i++) {
-      melons.get(i).display();
+    for (int i = 0; i < foods.size(); i++) {
+      foods.get(i).display();
     }
 
     player1.display();
@@ -54,9 +54,9 @@ void keyPressed() {
   step += 10;
 
   // If player frame engulfs food frame, destroy food instance
-  for (int i = 0; i < melons.size(); i++) {
-    if (player1.isEngulfing(melons.get(i))) {
-      melons.remove(i);
+  for (int i = 0; i < foods.size(); i++) {
+    if (player1.isEngulfing(foods.get(i))) {
+      foods.remove(i);
       bite.play();
       player1.gamePoints++;
     }
